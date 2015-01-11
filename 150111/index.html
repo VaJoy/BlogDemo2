@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>账户中心</title>
+    <link rel="stylesheet" href="css/user.css">
+    <script src="js/lib/require.js" type="text/javascript" data-main="js/page/user"></script>
+</head>
+<body ms-controller="user" class="ms-controller">
+<script type="text/javascript">
+    //这里给后端提供数据接口
+    var conf = {
+        username: {"id": "11", "name": "VaJoy"}
+    }
+</script>
+<header>
+    <span>{{username.name}}你好，欢迎来到账户中心</span>
+</header>
+<nav>
+    <ul>
+        <li><a href="#!/index">我的首页</a></li>
+        <li><a href="#!/detail">账户详情</a></li>
+        <li><a href="#!/recharge">我要充值</a></li>
+    </ul>
+</nav>
+<article ms-include-src="pageUrl"> <!--这里使用ms-include-src接口，它会引入pageUrl属性所对应的文件-->
+</article>
+</body>
+</html>

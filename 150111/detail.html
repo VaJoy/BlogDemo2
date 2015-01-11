@@ -1,0 +1,13 @@
+<section ms-controller="detail" class="detail ms-controller">
+    哟哟哟，这里是详情页面，{{username.name}}你好
+</section>
+<script>
+    require(['avalon','css!../../css/detail.css'], function(){
+    //下面的其实建议写成一个模块detail.js然后由require引入
+        avalon.define({
+            $id: "detail",
+            username: conf.username
+        });
+        avalon.scan();
+    })
+</script>
