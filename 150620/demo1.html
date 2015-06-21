@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>最简单的jsx</title>
+    <script src="react.js"></script>
+    <script src="JSXTransformer.js"></script>
+</head>
+<body>
+<div id="a">123</div>
+<script type="text/jsx">
+    var arr = ['HELLO', "here is", 123, "VaJoy`s blog"];
+    React.render(
+        <ul>{
+            arr.filter(function(v){
+                return typeof v === 'string'
+            }).map(function(v){
+                return <li> {v} </li>
+            })
+        }</ul>,
+        document.getElementById('a')
+    );
+</script>
+</body>
+</html>

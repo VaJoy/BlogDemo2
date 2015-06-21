@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>props.children</title>
+    <style>
+        p:active{ color: deeppink; }
+    </style>
+    <script src="react.js"></script>
+    <script src="JSXTransformer.js"></script>
+</head>
+<body>
+<div id="a"></div>
+<script type="text/jsx">
+    var Component1 = React.createClass({
+        render: function() {
+            return <li>{this.props.children}</li>
+        }
+    });
+    var Component2 = React.createClass({
+        list: ['张三', '李四', '王五'],
+        render: function() {
+            return (
+                    <ul>
+                    {
+                            this.list.map(function(item){
+                                return <Component1>{item}</Component1>
+                            })
+                            }
+                    </ul>
+            );
+        }
+    });
+    React.render(
+            <Component2 />,
+            document.getElementById('a')
+    );
+</script>
+</body>
+</html>

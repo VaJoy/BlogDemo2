@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>组件嵌套</title>
+    <style>
+        .nameStyle{
+            color: dodgerblue;
+        }
+    </style>
+    <script src="react.js"></script>
+    <script src="JSXTransformer.js"></script>
+</head>
+<body>
+<div id="a"></div>
+<script type="text/jsx">
+    var name = 'VaJoy',
+    Demo = React.createClass({
+        render: function() {
+            var a = "Hello，";
+            return <span className="nameStyle" >{a,name}</span>;
+        }
+    }),
+    DemoWrap = React.createClass({
+        render: function() {
+            return <ul>{
+               [1,2,3].map(function(v){
+                   return <li style={{fontSize:'20px'}}>{v} <Demo /></li>  //嵌套组件Demo
+                })
+            }</ul>;
+        }
+    });
+
+    React.render(
+        <DemoWrap />,  //引入组件DemoWrap
+        document.getElementById('a')
+    );
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>state</title>
+    <style>
+        p:active{ color: deeppink; }
+    </style>
+    <script src="react.js"></script>
+    <script src="JSXTransformer.js"></script>
+</head>
+<body>
+<div id="a"></div>
+<script type="text/jsx">
+    var Component = React.createClass({
+        getInitialState: function() {
+            return {
+                isClick: !1
+            }
+        },
+        render: function() {
+            var text = this.state.isClick ? 'clicked!' : 'none click';
+            return <div>
+                <input type="checkbox" onChange={this.clickCb} />{ text }
+            </div>;
+        },
+        clickCb: function(){
+            this.setState({
+                isClick : !this.state.isClick  //点击checkbox时改变state.isClick
+            })
+        }
+    });
+
+    React.render(
+        <Component />,
+        document.getElementById('a')
+    );
+</script>
+</body>
+</html>
