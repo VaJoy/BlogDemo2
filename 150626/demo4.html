@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>componentWillReceiveProps</title>
+    <style>
+        div:active{color:orangered;}
+    </style>
+    <script src="react.js"></script>
+    <script src="JSXTransformer.js"></script>
+</head>
+<body>
+<div id="a">123</div>
+<script type="text/jsx">
+    var i = 0,
+        div = document.getElementById('a'),
+        render = function(){
+            React.render(
+                    <Component1 i={i++} />, div
+            );
+        };
+
+    var Component1 = React.createClass({
+        componentWillReceiveProps: function(nextProps){
+            console.log(this.props.i, nextProps.i)
+        },
+        render: function() {
+            return <div onClick={render}>props.i的值是：{this.props.i}</div>
+        }
+    });
+    render();
+</script>
+</body>
+</html>

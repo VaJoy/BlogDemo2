@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>题目</title>
+    <style>
+        div:active{color:orangered;}
+    </style>
+    <script src="react.js"></script>
+    <script src="JSXTransformer.js"></script>
+</head>
+<body>
+<script type="text/jsx">
+
+    var Component1 = React.createClass({
+        componentWillMount: function(){
+            console.log('componentWillMount')
+        },
+        componentDidMount: function(){
+            console.log('componentDidMount')
+        },
+        componentWillReceiveProps: function(){
+            console.log('componentWillReceiveProps')
+        },
+        shouldComponentUpdate: function(){
+            console.log('shouldComponentUpdate');
+            return true;
+        },
+        componentWillUpdate: function(){
+            console.log('componentWillUpdate')
+        },
+        componentDidUpdate: function(){
+            console.log('componentDidUpdate')
+        },
+        componentWillUnmount: function(){
+            console.log('componentWillUnmount')
+        },
+        render: function() {
+            return <div>我只是一个安静的div</div>
+        }
+    });
+    React.render(
+            <Component1 />, document.body
+    );
+    React.render(
+            <Component1 />, document.body
+    );
+    React.unmountComponentAtNode(document.body)
+</script>
+</body>
+</html>

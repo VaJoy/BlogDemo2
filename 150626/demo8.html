@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>componentWillUnmount</title>
+    <style>
+        div:active{color:orangered;}
+    </style>
+    <script src="react.js"></script>
+    <script src="JSXTransformer.js"></script>
+</head>
+<body>
+<div id="a">123</div>
+<div id="b"><p>这里是div2，点击我会移除上面div的组件</p></div>
+<script type="text/jsx">
+    var div = document.getElementById('a'),
+        div2 = document.getElementById('b');
+
+    var Component1 = React.createClass({
+        DOMArr : [],
+        getInitialState: function(){
+            return { i : 0 }
+        },
+        componentDidUpdate: function(nextProps, nextState){
+            var dom = document.createElement('p');
+            dom.innerText = this.state.i;
+            div2.appendChild(dom);
+            this.DOMArr.push(dom);
+        },
+        componentWillUnmount: function(){
+            if(!this.DOMArr.length) return;
+            var i = 0;
+            while(i < this.DOMArr.length){console.log(i);
+                div2.removeChild(this.DOMArr[i++]); //移除componentDidUpdate里添加过的DOM
+            }
+        },
+        clickCb: function(){
+            this.setState({
+                i : this.state.i + 1
+            })
+        },
+        render: function() {
+            return <div onClick={this.clickCb}>state.i的值是：{this.state.i}</div>
+        }
+    });
+    React.render(
+            <Component1 />, div
+    );
+
+    div2.addEventListener('click',function(){
+        React.unmountComponentAtNode(div) //点击div2则卸载掉第一个div里的组件
+    }, false)
+</script>
+</body>
+</html>

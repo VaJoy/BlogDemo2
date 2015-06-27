@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>shouldComponentUpdate</title>
+    <style>
+        div:active{color:orangered;}
+    </style>
+    <script src="react.js"></script>
+    <script src="JSXTransformer.js"></script>
+</head>
+<body>
+<div id="a">123</div>
+<script type="text/jsx">
+    var div = document.getElementById('a');
+
+    var Component1 = React.createClass({
+        getInitialState: function(){
+            return { i : 0 }
+        },
+        shouldComponentUpdate: function(nextProps, nextState){
+            console.log( this.state.i, nextState.i );
+            return nextState.i > 3 ? true : false; //返回true才会渲染组件
+        },
+        clickCb: function(){
+            this.setState({
+                i : this.state.i + 1
+            })
+        },
+        render: function() {
+            return <div onClick={this.clickCb}>state.i的值是：{this.state.i}</div>
+        }
+    });
+    React.render(
+            <Component1 />, div
+    );
+</script>
+</body>
+</html>
