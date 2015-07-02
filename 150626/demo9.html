@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>题目</title>
+    <title>getDefaultProps 和 getInitialState</title>
     <style>
         div:active{color:orangered;}
     </style>
@@ -10,42 +10,43 @@
     <script src="JSXTransformer.js"></script>
 </head>
 <body>
+<div></div>
+<div></div>
 <script type="text/jsx">
-
+    var diva = document.getElementsByTagName('div')[0],
+            divb = document.getElementsByTagName('div')[1];
     var Component1 = React.createClass({
-        componentWillMount: function(){
-            console.log('componentWillMount')
+        getDefaultProps: function(){
+            console.log('getDefaultProps');
+            return { name : Date.now() }
         },
-        componentDidMount: function(){
-            console.log('componentDidMount')
+        getInitialState: function(){
+            console.log('getInitialState');
+            return null; //必须返回一个null或对象，否则会报错
         },
-        componentWillReceiveProps: function(){
-            console.log('componentWillReceiveProps')
-        },
-        shouldComponentUpdate: function(){
-            console.log('shouldComponentUpdate');
-            return true;
-        },
-        componentWillUpdate: function(){
-            console.log('componentWillUpdate')
-        },
-        componentDidUpdate: function(){
-            console.log('componentDidUpdate')
-        },
-        componentWillUnmount: function(){
-            console.log('componentWillUnmount')
-        },
+
         render: function() {
-            return <div>我只是一个安静的div</div>
+            console.log(Date.now());
+            return <div name={this.props.name}>我只是一个安静的div</div>
         }
     });
     React.render(
-            <Component1 />, document.body
+            {/* 触发一次 getDefaultProps 和 getInitialState */}
+            <Component1 />, diva
     );
     React.render(
-            <Component1 />, document.body
+            {/* getDefaultProps 和 getInitialState都不触发 */}
+            <Component1 />, diva
     );
-    React.unmountComponentAtNode(document.body)
+    React.unmountComponentAtNode(diva);
+    React.render(
+            {/* 触发一次getInitialState */}
+            <Component1 name="a"/>, diva
+    );
+    React.render(
+            {/* 触发一次getInitialState */}
+            <Component1/>, divb
+    );
 </script>
 </body>
 </html>
