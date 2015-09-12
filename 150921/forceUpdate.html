@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>forceUpdate</title>
+    <script src="react.js"></script>
+    <script src="JSXTransformer.js"></script>
+</head>
+<body>
+<div id="a">123</div>
+<script type="text/jsx">
+    var Component1 = React.createClass({
+        shouldComponentUpdate: function(nextProps, nextState){
+            console.log( this.state, nextState );
+            this.forceUpdate(function(){
+                console.log('强制渲染完成')
+            }); //强制渲染,去掉这行则不会渲染
+            return false;
+        },
+        componentDidUpdate: function(){
+            console.log('componentDidUpdate')
+        },
+        getInitialState: function() {
+            return {
+                isClick: !1
+            }
+        },
+        clickCb: function() {
+            this.setState({
+                isClick : !this.state.isClick
+            })
+        },
+        render: function() {
+            return (<div onClick={this.clickCb}>
+            isClick:{this.state.isClick ? 'yes' : 'nope'}
+            </div>)
+        }
+    });
+    var div = document.getElementById('a');
+    var c1 = React.render(
+        <Component1 />, div
+    );
+
+</script>
+</body>
+</html>

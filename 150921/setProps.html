@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>setProps</title>
+    <script src="react.js"></script>
+    <script src="JSXTransformer.js"></script>
+</head>
+<body>
+<div id="a">123</div>
+<script type="text/jsx">
+    var Component1 = React.createClass({
+        clickCb: function() {
+            this.setProps({
+                name : 'cnBlog'
+            }, function(){
+                console.log(this.props)
+            })
+        },
+        render: function() {
+            return (<div onClick={this.clickCb}>
+                    {this.props.sayhi || 'www.'}
+                    {this.props.name || 'nothing'}
+            </div>)
+        }
+    });
+    var div = document.getElementById('a');
+    React.render(
+            <Component1 name="VaJoy" sayhi="Hello " />, div
+    );
+</script>
+</body>
+</html>

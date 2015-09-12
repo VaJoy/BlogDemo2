@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>isMounted</title>
+    <script src="react.js"></script>
+    <script src="JSXTransformer.js"></script>
+</head>
+<body>
+<div id="a">123</div>
+<script type="text/jsx">
+    var Component1 = React.createClass({
+        getInitialState: function() {
+            return {
+                class: 'hello'
+            }
+        },
+        componentWillMount: function () {
+            doSomething(props).then(function (content) {
+                if (this.isMounted()) {
+                    this.setState({content: content});
+                }
+            }.bind(this));
+        },
+        render: function() {
+            if(this.state.isClick){
+                return (<div>
+                content:{this.state.content}
+                </div>)
+            } else {
+                return false;
+            }
+        }
+    });
+    var div = document.getElementById('a');
+    var c = React.render(
+        <Component1 />, div
+    );
+</script>
+</body>
+</html>

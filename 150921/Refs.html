@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Refs</title>
+    <script src="react.js"></script>
+    <script src="JSXTransformer.js"></script>
+</head>
+<body>
+<div id="a">123</div>
+<script type="text/jsx">
+    var Component1 = React.createClass({
+        clickCb: function(e) {
+            if(e.target === this.refs.li2.getDOMNode()){
+                alert('你点到第二个LI了')
+            }
+        },
+        render: function() {
+            return (<ul onClick={this.clickCb}>
+                <li>1</li>
+                <li ref="li2">2</li>
+                <li>3</li>
+            </ul>)
+        }
+    });
+    var div = document.getElementById('a');
+    React.render(
+            <Component1 />, div
+    );
+</script>
+</body>
+</html>

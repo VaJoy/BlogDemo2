@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>replaceState</title>
+    <script src="react.js"></script>
+    <script src="JSXTransformer.js"></script>
+</head>
+<body>
+<div id="a">123</div>
+<script type="text/jsx">
+    var Component1 = React.createClass({
+        getInitialState: function() {
+            return {
+                isClick: !1,
+                abc: 1   //注意这里我们初始化了一个 state.abc
+            }
+        },
+        clickCb: function() {
+            this.replaceState({
+                isClick : !0
+            }, function(){
+                console.log(this.state)
+            })
+        },
+        render: function() {
+            return (<div onClick={this.clickCb}>
+            isClick:{this.state.isClick ? 'yes' : 'nope'}
+            </div>)
+        }
+    });
+    var div = document.getElementById('a');
+    var s = React.render(
+        <Component1 />, div
+    );
+</script>
+</body>
+</html>
