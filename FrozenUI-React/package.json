@@ -1,0 +1,22 @@
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vajoylan",
+  "license": "ISC",
+  "dependencies": {
+    "css-loader": "^0.15.2",
+    "expose-loader": "^0.7.0",
+    "file-loader": "^0.8.4",
+    "jsx-loader": "^0.13.2",
+    "node-sass": "^3.2.0",
+    "react": "^0.13.3",
+    "sass-loader": "^1.0.2",
+    "style-loader": "^0.12.3",
+    "url-loader": "^0.5.6"
+  }
+}
