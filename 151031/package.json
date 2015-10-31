@@ -1,0 +1,27 @@
+{
+  "name": "151031",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "karma start --browsers PhantomJS_custom"
+  },
+  "author": "VaJoy",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^5.8.33",
+    "babel-loader": "^5.3.3",
+    "chai": "^3.4.0",
+    "karma": "^0.13.14",
+    "karma-chai": "^0.1.0",
+    "karma-mocha": "^0.2.0",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-phantomjs-shim": "^1.1.2",
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.3.3",
+    "phantomjs": "^1.9.18",
+    "react": "^0.14.1",
+    "react-dom": "^0.14.1",
+    "webpack": "^1.12.2"
+  }
+}
