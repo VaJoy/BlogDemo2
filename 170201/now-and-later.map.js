@@ -53,13 +53,13 @@ function map(values, iterator, extensions, done) {
             if (err) {
                 //触发'error'事件
                 exts.error(err, storage);
-                return done(err, results);
+                return done(err, results);  //有任务出错，故所有任务应停止调用
             }
             //触发'stop'事件
             exts.after(result, storage);
             results[key] = result;
             if (--count === 0) {
-                done(err, results);
+                done(err, results);  //所有任务已经调用完毕
             }
         }
     }
