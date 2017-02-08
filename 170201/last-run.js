@@ -14,10 +14,10 @@ function isFunction(fn) {
 
 function isExtensible(fn) {
     if (hasNativeWeakMap) {
-        // Native weakmap doesn't care about extensible
+        // 支持原生 weakmap 直接返回
         return true;
     }
-
+    //平台不支持 weakmap 的话则要求 fn 是可扩展属性的对象，以确保还是能支持 es6-weak-map
     return Object.isExtensible(fn);
 }
 
@@ -34,7 +34,7 @@ function lastRun(fn, timeResolution) {
     //defaultResolution接口 - timeResolution格式处理（转十进制整数）
     var resolution = defaultResolution(timeResolution);
 
-    //减去(time % resolution)是将后n位置0
+    //减去(time % resolution)的作用是将后n位置0
     return time - (time % resolution);
 }
 
@@ -43,7 +43,7 @@ function capture(fn, timestamp) {
     assert(isExtensible(fn), 'Only extensible functions can be captured');
 
     timestamp = timestamp || Date.now();
-    //（在任务执行的时候）存储捕获时间
+    //（在任务执行的时候）存储捕获时间信息
     runtimes.set(fn, timestamp);
 }
 
