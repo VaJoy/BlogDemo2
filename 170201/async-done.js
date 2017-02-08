@@ -21,6 +21,7 @@ function asyncDone(fn, cb) {
     function done() {
         d.removeListener('error', onError);
         d.exit();
+        //执行 cb
         return cb.apply(null, arguments);
     }
 
@@ -44,20 +45,21 @@ function asyncDone(fn, cb) {
         }
 
         if (result && typeof result.on === 'function') {
-            // Assume node stream
+            // result 为 Stream 时
             d.add(result);
+            //消耗完毕了自动触发 done
             eos(exhaust(result), eosConfig, done);
             return;
         }
 
         if (result && typeof result.subscribe === 'function') {
-            // Assume RxJS observable
+            // result 为 RxJS observable 时的处理
             result.subscribe(onNext, onError, onCompleted);
             return;
         }
 
         if (result && typeof result.then === 'function') {
-            // Assume promise
+            // result 为 Promise 对象时的处理
             result.then(onSuccess, onError);
             return;
         }

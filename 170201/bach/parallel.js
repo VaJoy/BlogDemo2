@@ -19,7 +19,7 @@ function buildParallel() {
     }
 
     function parallel(done) {
-        //遍历tasks数组，将每个task异步化，且将其生命周期和extensions属性关联起来
+        //遍历tasks数组，将其生命周期和extensions属性关联起来,且将每个task异步化，且并发执行
         nowAndLater.map(args, asyncDone, extensions, done);
     }
 

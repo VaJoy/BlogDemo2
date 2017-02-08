@@ -14,7 +14,7 @@ function parallel() {
   var args = normalizeArgs(this._registry, arguments);
   //新增一个扩展对象，用于后续给 taskFunction 加上生命周期
   var extensions = createExtensions(this);
-  //将 taskFunctions 里的每一个 taskFunction 加上生命周期，且异步化
+  //将 taskFunctions 里的每一个 taskFunction 加上生命周期，且异步化taskFunction，安排它们并发执行（调用fn的时候）
   var fn = create(args, extensions);
 
   fn.displayName = '<parallel>';
